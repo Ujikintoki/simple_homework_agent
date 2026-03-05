@@ -11,8 +11,12 @@
 # # Infinite loop's dance.
 
 import sys
+import os
 import asyncio
 from agents import Agent, Runner, InputGuardrailTripwireTriggered
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ——————————————————————————————————————————————————————————————————————————————
 # 1. import agents
@@ -20,6 +24,36 @@ from agents import Agent, Runner, InputGuardrailTripwireTriggered
 from my_agents.math_agent.agent import math_agent
 from my_agents.history_agent.agent import history_agent
 
+load_dotenv()
+
+# from agents import Agent, Runner, InputGuardrailTripwireTriggered
+from openai import AsyncAzureOpenAI
+
+# -------------------------------------------------------------------------
+# 关键新增：Azure 客户端配置与注入
+# -------------------------------------------------------------------------
+try:
+    from agents import set_default_openai_client, set_tracing_disabled
+    
+    # 关闭全局追踪，消除 "skipping trace export" 的警告
+    set_tracing_disabled(disabled=True)
+    
+    # 实例化 Azure 异步客户端
+    azure_client = AsyncAzureOpenAI(
+        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
+        api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+        azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT")
+    )
+    
+    # 将 Azure 客户端设为全局默认
+    set_default_openai_client(azure_client)
+    
+except ImportError:
+    # 备选方案：如果你的 agents 库版本不支持 set_default_openai_client
+    # 我们可以通过直接设置 OS 环境变量来欺骗底层客户端
+    os.environ["OPENAI_API_KEY"] = os.getenv("AZURE_OPENAI_API_KEY", "")
+    os.environ["OPENAI_BASE_URL"] = f"{os.getenv('AZURE_OPENAI_ENDPOINT', '').rstrip('/')}/openai/deployments/{os.getenv('AZURE_OPENAI_CHAT_DEPLOYMENT', '')}"
+    os.environ["OPENAI_API_VERSION"] = os.getenv("AZURE_OPENAI_API_VERSION", "")
 # ——————————————————————————————————————————————————————————————————————————————
 # 2. input guardrail
 # ——————————————————————————————————————————————————————————————————————————————
@@ -32,6 +66,7 @@ triage_agent = Agent(
     name="triage_agent",
     instructions="Handoff to the appropriate agent based on the request.",
     handoffs=[math_agent, history_agent],
+    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
     input_guardrails=[content_guardrail],
 )
 

@@ -1,4 +1,6 @@
 # input_guardrails.py
+import os
+
 from pydantic import BaseModel
 from agents import (Agent, 
                     Runner, 
@@ -34,6 +36,7 @@ guardrail_agent = Agent(
 
     Think step-by-step in `reasoning` before making your final boolean decision.
     """,
+    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
     output_type=LegalCheckOutput,
 )
 

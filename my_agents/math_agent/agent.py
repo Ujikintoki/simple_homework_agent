@@ -1,5 +1,10 @@
+import os
+
 from agents import Agent
 from input_guardrails import content_guardrail
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ——————————————————————————————————————————————————————————————————————————————
 # Math Agent
@@ -20,5 +25,6 @@ math_agent = Agent(
 
     Tone: Encouraging, academic, and highly structured.
     """,
+    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
     input_guardrails=[content_guardrail],
 )

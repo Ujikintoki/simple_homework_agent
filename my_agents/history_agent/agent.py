@@ -1,5 +1,10 @@
+import os
+
 from agents import Agent
 from input_guardrails import content_guardrail
+from dotenv import load_dotenv
+
+load_dotenv()
 
 # ——————————————————————————————————————————————————————————————————————————————
 # History Agent 定义
@@ -18,5 +23,6 @@ history_agent = Agent(
 
     Tone: Scholarly, patient, and factual.
     """,
+    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
     input_guardrails=[content_guardrail],
 )
