@@ -96,7 +96,7 @@ async def main():
                 
         except InputGuardrailTripwireTriggered as e:
             reason = "Sorry, that is not a homework question."
-            r
+            
             try:
                 if hasattr(e, 'guardrail_result') and hasattr(e.guardrail_result, 'output'):
                     guardrail_func_output = e.guardrail_result.output
