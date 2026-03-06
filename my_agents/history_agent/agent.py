@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # ——————————————————————————————————————————————————————————————————————————————
-# History Agent 定义
+# History Agent
 # ——————————————————————————————————————————————————————————————————————————————
 history_agent = Agent(
     name="history_agent",

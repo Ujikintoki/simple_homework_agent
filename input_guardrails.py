@@ -1,14 +1,38 @@
-# input_guardrails.py
 import os
-
+from dotenv import load_dotenv
 from pydantic import BaseModel
+from openai import AsyncAzureOpenAI
 from agents import (Agent, 
                     Runner, 
                     input_guardrail, 
                     GuardrailFunctionOutput, 
                     RunContextWrapper,
+                    OpenAIChatCompletionsModel,
+                    set_tracing_disabled,
                 )
 
+load_dotenv()
+
+# ——————————————————————————————————————————————————————————————————————————————
+# 1. api setting
+# ——————————————————————————————————————————————————————————————————————————————
+api_key = os.getenv("AZURE_OPENAI_API_KEY")
+
+azure_client = AsyncAzureOpenAI(
+    api_key=api_key,
+    azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT").rstrip('/'),
+    api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
+    default_headers={"Ocp-Apim-Subscription-Key": api_key}
+)
+
+azure_model = OpenAIChatCompletionsModel(
+    openai_client=azure_client,
+    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT")
+)
+
+# ——————————————————————————————————————————————————————————————————————————————
+# 2. guardrail agent
+# ——————————————————————————————————————————————————————————————————————————————
 class LegalCheckOutput(BaseModel):
     reasoning: str
     is_illegal: bool
@@ -36,7 +60,7 @@ guardrail_agent = Agent(
 
     Think step-by-step in `reasoning` before making your final boolean decision.
     """,
-    model=os.getenv("AZURE_OPENAI_CHAT_DEPLOYMENT"),
+    model=azure_model,
     output_type=LegalCheckOutput,
 )
 
