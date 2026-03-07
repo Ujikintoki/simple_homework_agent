@@ -12,6 +12,7 @@ from input_guardrails import content_guardrail
 from my_agents.math_agent.agent import math_agent
 from my_agents.history_agent.agent import history_agent
 from my_agents.chemistry_agent.agent import chemistry_agent
+from my_agents.philosophy_agent.agent import philosophy_agent
 
 load_dotenv()
 
@@ -41,6 +42,7 @@ azure_model = OpenAIChatCompletionsModel(
 math_agent.model = azure_model
 history_agent.model = azure_model
 chemistry_agent.model = azure_model
+philosophy_agent.model = azure_model
 
 # ——————————————————————————————————————————————————————————————————————————————
 # 2. Handout Triage
@@ -49,7 +51,7 @@ chemistry_agent.model = azure_model
 triage_agent = Agent(
     name="triage_agent",
     instructions="Handoff to the appropriate agent based on the request.",
-    handoffs=[math_agent, history_agent, chemistry_agent],
+    handoffs=[math_agent, history_agent, chemistry_agent, philosophy_agent],
     model=azure_model,
     input_guardrails=[content_guardrail],
 )
