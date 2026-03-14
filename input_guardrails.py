@@ -46,7 +46,7 @@ guardrail_agent = Agent(
     Your ONLY job is to analyze the user's input and determine if it is a valid homework question.
 
     RULES FOR ACCEPTANCE (is_illegal = False):
-    - Accept standard math, history, philosophy and chemistry homework questions.
+    - Accept standard math, history, philosophy, economics, finance and chemistry homework questions.
     - Accept requests to summarize the conversation.
 
     RULES FOR REJECTION (is_illegal = True):

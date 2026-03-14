@@ -13,6 +13,8 @@ from my_agents.math_agent.agent import math_agent
 from my_agents.history_agent.agent import history_agent
 from my_agents.chemistry_agent.agent import chemistry_agent
 from my_agents.philosophy_agent.agent import philosophy_agent
+from my_agents.economics_agent.agent import economics_agent
+from my_agents.finance_agent.agent import finance_agent
 
 load_dotenv()
 
@@ -43,6 +45,8 @@ math_agent.model = azure_model
 history_agent.model = azure_model
 chemistry_agent.model = azure_model
 philosophy_agent.model = azure_model
+economics_agent.model = azure_model
+finance_agent.model = azure_model
 
 # ——————————————————————————————————————————————————————————————————————————————
 # 2. Handout Triage
@@ -51,7 +55,7 @@ philosophy_agent.model = azure_model
 triage_agent = Agent(
     name="triage_agent",
     instructions="Handoff to the appropriate agent based on the request.",
-    handoffs=[math_agent, history_agent, chemistry_agent, philosophy_agent],
+    handoffs=[math_agent, history_agent, chemistry_agent, philosophy_agent, economics_agent, finance_agent],
     model=azure_model,
     input_guardrails=[content_guardrail],
 )
@@ -64,7 +68,7 @@ async def main():
     # Disable framework telemetry to stop the missing API key warnings
     set_tracing_disabled(True)
     
-    print("AI: Welcome to Smart Tutor, your personal math and history homework tutor. What can I help you today?")
+    print("AI: Welcome to Smart Tutor, your personal homework tutor. What can I help you today?")
 
     current_agent = triage_agent
     inputs = []
