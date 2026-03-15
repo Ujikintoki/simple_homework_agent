@@ -29,7 +29,8 @@ azure_client = AsyncAzureOpenAI(
     api_key=api_key,
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT").rstrip('/'),
     api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    default_headers=default_headers
+    default_headers=default_headers,
+    timeout=60.0,
 )
 
 azure_model = OpenAIChatCompletionsModel(
@@ -46,7 +47,20 @@ history_agent.model = azure_model
 
 triage_agent = Agent(
     name="triage_agent",
-    instructions="Handoff to the appropriate agent based on the request.",
+    instructions="""
+    You are the routing agent for 'Smart Tutor', a homework tutoring system.
+
+    YOUR RESPONSIBILITIES:
+    1. For math-related homework questions, handoff to math_agent.
+    2. For history-related homework questions, handoff to history_agent.
+    3. For requests to summarize or review the conversation so far, DO NOT handoff. 
+       Instead, provide a clear, structured summary of the entire conversation yourself, 
+       including all questions asked, answers given, and key topics discussed.
+    4. For greetings, thank-you messages, or other polite exchanges, respond directly 
+       with a friendly, brief reply. Do not handoff for these.
+    5. If the user states their academic level (e.g., "I'm a year one student"), 
+       acknowledge it and remember it for context, then wait for their next question.
+    """,
     handoffs=[math_agent, history_agent],
     model=azure_model,
     input_guardrails=[content_guardrail],
@@ -112,20 +126,7 @@ async def main():
             inputs.append({"role": "assistant", "content": reason})
             current_agent = triage_agent
 
-        # except InputGuardrailTripwireTriggered as e:
-        #     # guardrail
-        #     reason = "Sorry, that is not a homework question."
-            
-        #     if hasattr(e, 'guardrail_result') and e.guardrail_result.output_info:
-        #         info = e.guardrail_result.output_info
-        #         if isinstance(info, dict):
-        #             reason = info.get("reasoning", info.get("reason", reason))
-        #         elif hasattr(info, 'reasoning'):
-        #             reason = info.reasoning
 
-        #     print(f"AI: {reason}")
-        #     inputs.append({"role": "assistant", "content": reason})
-        #     current_agent = triage_agent
 
         except Exception as e:
             print(f"\n[System Error]: {str(e)}")

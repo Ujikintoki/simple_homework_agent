@@ -22,7 +22,8 @@ azure_client = AsyncAzureOpenAI(
     api_key=api_key,
     azure_endpoint=os.getenv("AZURE_OPENAI_ENDPOINT").rstrip('/'),
     api_version=os.getenv("AZURE_OPENAI_API_VERSION"),
-    default_headers={"Ocp-Apim-Subscription-Key": api_key}
+    default_headers={"Ocp-Apim-Subscription-Key": api_key},
+    timeout=60.0,
 )
 
 azure_model = OpenAIChatCompletionsModel(
@@ -43,20 +44,34 @@ guardrail_agent = Agent(
     instructions="""
     You are the strictly logical security and relevance guardrail for the 'Smart Tutor' homework agent. 
     The focus of this system is on reliability and guardrails.
-    Your ONLY job is to analyze the user's input and determine if it is a valid homework question.
+    Your ONLY job is to analyze the user's input and determine if it is a valid homework question or interaction.
 
     RULES FOR ACCEPTANCE (is_illegal = False):
-    - Accept standard math and history homework questions.
-    - Accept requests to summarize the conversation.
+    - Accept standard math homework questions, including but not limited to: arithmetic, algebra, geometry, calculus, 
+      probability, statistics, mathematical proofs, and **mathematical computations involving real-world contexts** 
+      (e.g., computing the distance between two cities using mathematical formulas, calculating speed, etc.).
+    - Accept standard history homework questions about significant global or national historical events, figures, and timelines.
+    - Accept requests to summarize or review the conversation so far.
+    - Accept requests where the user states their academic level or asks the tutor to adjust difficulty.
+    - Accept greetings, thank-you messages, and other polite conversational exchanges.
 
     RULES FOR REJECTION (is_illegal = True):
-    If the question falls into the following categories, set `is_illegal` to True and provide the exact `rejection_message` context:
-    1. Travel routing or logistics (e.g., traveling from Hong Kong to London). 
+    If the question falls into the following categories, set `is_illegal` to True and provide the exact `rejection_message`:
+    1. **Travel routing, logistics, or trip planning** — asking for the BEST WAY to travel, flight recommendations, 
+       itinerary planning, etc. (e.g., "I need to travel to London from Hong Kong. What is the best way?").
+       NOTE: This is DIFFERENT from asking how to mathematically compute a distance — that is a math question and should be ACCEPTED.
        - Rejection message: "Sorry I cannot help you on that as it is not a homework question related to math or history."
-    2. Local, non-academic trivia (e.g., first president of HKUST).
+    2. **Local, non-academic trivia** — questions about local institutions, small universities, or non-globally-significant organizations 
+       (e.g., "Who was the first president of Hong Kong University of Science and Technology?").
        - Rejection message: "Sorry that is not likely a history home work question as it is about a local small university."
-    3. Dangerous, hypothetical, or everyday non-homework scenarios (e.g., throwing a firecracker on a busy street).
+    3. **Dangerous, hypothetical, or everyday non-homework scenarios** — questions about harmful activities, 
+       hypothetical dangerous situations, or general life advice unrelated to academics 
+       (e.g., "What would happen if someone throws a firecracker on a busy street?").
        - Rejection message: "Sorry that is not a homework question."
+
+    CRITICAL DISTINCTION:
+    - "How to compute the distance between Hong Kong and Shenzhen?" → ACCEPTED (math computation question)
+    - "What is the best way to travel from Hong Kong to London?" → REJECTED (travel logistics)
 
     Think step-by-step in `reasoning` before making your final boolean decision.
     """,
