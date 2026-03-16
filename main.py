@@ -61,6 +61,10 @@ triage_agent = Agent(
     YOUR RESPONSIBILITIES:
     1. For math-related homework questions, handoff to math_agent.
     2. For history-related homework questions, handoff to history_agent.
+    2. For chemistry-related homework questions, handoff to chemistry_agent.
+    2. For economics-related homework questions, handoff to economics_agent.
+    2. For philosophy-related homework questions, handoff to philosophy_agent.
+    2. For finance-related homework questions, handoff to finance_agent.
     3. For requests to summarize or review the conversation so far, DO NOT handoff. 
        Instead, provide a clear, structured summary of the entire conversation yourself, 
        including all questions asked, answers given, and key topics discussed.

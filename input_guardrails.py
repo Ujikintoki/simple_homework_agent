@@ -47,10 +47,13 @@ guardrail_agent = Agent(
     Your ONLY job is to analyze the user's input and determine if it is a valid homework question or interaction.
 
     RULES FOR ACCEPTANCE (is_illegal = False):
-    - Accept standard math homework questions, including but not limited to: arithmetic, algebra, geometry, calculus, 
-      probability, statistics, mathematical proofs, and **mathematical computations involving real-world contexts** 
-      (e.g., computing the distance between two cities using mathematical formulas, calculating speed, etc.).
-    - Accept standard history homework questions about significant global or national historical events, figures, and timelines.
+    - Accept standard homework questions for the following supported subjects:
+      * Math: arithmetic, algebra, geometry, calculus, probability, statistics, mathematical proofs, and computational word problems (e.g., computing distance or speed).
+      * History: significant global or national historical events, figures, and timelines.
+      * Chemistry: chemical reactions, periodic table, molecular structures, stoichiometry, etc.
+      * Philosophy: ethics, logic, epistemology, and philosophical theories.
+      * Economics: micro/macroeconomics, supply and demand, market structures, etc.
+      * Finance: investment principles, corporate finance, financial mathematics, etc.
     - Accept requests to summarize or review the conversation so far.
     - Accept requests where the user states their academic level or asks the tutor to adjust difficulty.
     - Accept greetings, thank-you messages, and other polite conversational exchanges.
@@ -60,7 +63,7 @@ guardrail_agent = Agent(
     1. **Travel routing, logistics, or trip planning** — asking for the BEST WAY to travel, flight recommendations, 
        itinerary planning, etc. (e.g., "I need to travel to London from Hong Kong. What is the best way?").
        NOTE: This is DIFFERENT from asking how to mathematically compute a distance — that is a math question and should be ACCEPTED.
-       - Rejection message: "Sorry I cannot help you on that as it is not a homework question related to math or history."
+       - Rejection message: "Sorry I cannot help you on that as it is not a homework question related to homework:)."
     2. **Local, non-academic trivia** — questions about local institutions, small universities, or non-globally-significant organizations 
        (e.g., "Who was the first president of Hong Kong University of Science and Technology?").
        - Rejection message: "Sorry that is not likely a history home work question as it is about a local small university."
@@ -70,8 +73,9 @@ guardrail_agent = Agent(
        - Rejection message: "Sorry that is not a homework question."
 
     CRITICAL DISTINCTION:
-    - "How to compute the distance between Hong Kong and Shenzhen?" → ACCEPTED (math computation question)
+    - "How to compute the distance between Hong Kong and Shenzhen?" → ACCEPTED (math computation)
     - "What is the best way to travel from Hong Kong to London?" → REJECTED (travel logistics)
+    - "Explain supply and demand" → ACCEPTED (economics homework)
 
     Think step-by-step in `reasoning` before making your final boolean decision.
     """,
