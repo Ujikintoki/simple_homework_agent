@@ -77,6 +77,31 @@ triage_agent = Agent(
     model=azure_model,
     input_guardrails=[content_guardrail],
 )
+    
+async def ask_agent(user_msg, inputs, current_agent):
+    try:
+        inputs.append({"role": "user", "content": user_msg})
+
+        result = await Runner.run(current_agent, inputs)
+
+        response = result.final_output
+
+        # 更新对话历史
+        if hasattr(result, 'to_input_list'):
+            inputs = result.to_input_list()
+        else:
+            inputs.append({"role": "assistant", "content": response})
+
+        # 更新当前 agent
+        if hasattr(result, 'current_agent') and result.current_agent:
+            current_agent = result.current_agent
+
+        return response, inputs, current_agent
+
+    except InputGuardrailTripwireTriggered as e:
+        reason = "Sorry, that is not a homework question."
+        inputs.append({"role": "assistant", "content": reason})
+        return reason, inputs, current_agent
 
 # ——————————————————————————————————————————————————————————————————————————————
 # 3. Main Async Loop

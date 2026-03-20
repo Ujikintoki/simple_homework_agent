@@ -63,7 +63,7 @@ guardrail_agent = Agent(
     1. **Travel routing, logistics, or trip planning** — asking for the BEST WAY to travel, flight recommendations, 
        itinerary planning, etc. (e.g., "I need to travel to London from Hong Kong. What is the best way?").
        NOTE: This is DIFFERENT from asking how to mathematically compute a distance — that is a math question and should be ACCEPTED.
-       - Rejection message: "Sorry I cannot help you on that as it is not a homework question related to homework:)."
+       - Rejection message: "Sorry I cannot help you on that as it is not a question related to homework:)."
     2. **Local, non-academic trivia** — questions about local institutions, small universities, or non-globally-significant organizations 
        (e.g., "Who was the first president of Hong Kong University of Science and Technology?").
        - Rejection message: "Sorry that is not likely a history home work question as it is about a local small university."
