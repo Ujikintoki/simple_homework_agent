@@ -13,7 +13,7 @@ st.title("🤖 SmartTutor")
 if "messages" not in st.session_state:
     st.session_state.messages = [{
         "role": "assistant",
-        "content": "Welcome to Smart Tutor, your personal homework tutor. What can I help you today?",
+        "content": "Welcome to Smart Tutor, your personal homework tutor. I can handle your math, history, finance, economics, philosophy and chemistry homework questions. What can I help you today?",
         "is_warning": False
     }]
 
