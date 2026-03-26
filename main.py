@@ -61,51 +61,26 @@ triage_agent = Agent(
     YOUR RESPONSIBILITIES:
     1. For math-related homework questions, handoff to math_agent.
     2. For history-related homework questions, handoff to history_agent.
-    2. For chemistry-related homework questions, handoff to chemistry_agent.
-    2. For economics-related homework questions, handoff to economics_agent.
-    2. For philosophy-related homework questions, handoff to philosophy_agent.
-    2. For finance-related homework questions, handoff to finance_agent.
-    3. For requests to summarize or review the conversation so far, DO NOT handoff. 
+    3. For chemistry-related homework questions, handoff to chemistry_agent.
+    4. For economics-related homework questions, handoff to economics_agent.
+    5. For philosophy-related homework questions, handoff to philosophy_agent.
+    6. For finance-related homework questions, handoff to finance_agent.
+    7. For requests to summarize or review the conversation so far, DO NOT handoff. 
        Instead, provide a clear, structured summary of the entire conversation yourself, 
        including all questions asked, answers given, and key topics discussed.
-    4. For greetings, thank-you messages, or other polite exchanges, respond directly 
+    8. For greetings, thank-you messages, or other polite exchanges, respond directly 
        with a friendly, brief reply. Do not handoff for these.
-    5. If the user states their academic level (e.g., "I'm a year one student"), 
+    9. If the user states their academic level (e.g., "I'm a year one student"), 
        acknowledge it and remember it for context, then wait for their next question.
-    6.  If the user specifies an incorrect subject (e.g., asking a math question in a history context),
+    10. If the user specifies an incorrect subject (e.g., asking a math question in a history context),
        you should ignore the incorrect framing, identify the true subject of the question,
-       and route it to the appropriate agent.Do NOT reject a question solely because the subject context provided by the user is inappropriate.
+       and route it to the appropriate agent. Do NOT reject a question solely because the subject context provided by the user is inappropriate.
     """,
     handoffs=[math_agent, history_agent, chemistry_agent, philosophy_agent, economics_agent, finance_agent],
     model=azure_model,
     input_guardrails=[content_guardrail],
 )
     
-async def ask_agent(user_msg, inputs, current_agent):
-    try:
-        inputs.append({"role": "user", "content": user_msg})
-
-        result = await Runner.run(current_agent, inputs)
-
-        response = result.final_output
-
-        # 更新对话历史
-        if hasattr(result, 'to_input_list'):
-            inputs = result.to_input_list()
-        else:
-            inputs.append({"role": "assistant", "content": response})
-
-        # 更新当前 agent
-        if hasattr(result, 'current_agent') and result.current_agent:
-            current_agent = result.current_agent
-
-        return response, inputs, current_agent
-
-    except InputGuardrailTripwireTriggered as e:
-        reason = "Sorry, that is not a homework question."
-        inputs.append({"role": "assistant", "content": reason})
-        return reason, inputs, current_agent
-
 # ——————————————————————————————————————————————————————————————————————————————
 # 3. Main Async Loop
 # ——————————————————————————————————————————————————————————————————————————————
@@ -116,6 +91,7 @@ async def main():
     
     print("AI: Welcome to Smart Tutor, your personal homework tutor. What can I help you today?")
 
+    # 初始状态由 triage_agent 接管
     current_agent = triage_agent
     inputs = []
 
@@ -132,7 +108,7 @@ async def main():
             # record input message
             inputs.append({"role": "user", "content": user_msg})
 
-            # run current agent
+            # run current agent (确保此时 current_agent 始终是 triage_agent)
             result = await Runner.run(current_agent, inputs)
 
             # print output message
@@ -144,9 +120,9 @@ async def main():
             else:
                 inputs.append({"role": "assistant", "content": result.final_output})
 
-            # update current_agent
-            if hasattr(result, 'current_agent') and result.current_agent:
-                current_agent = result.current_agent
+            # 【核心修改点】：移除将 current_agent 锁定为特定学科 agent 的逻辑。
+            # 强制每一轮的起始都回归到 triage_agent，利用完整的历史记录重新做路由决策。
+            current_agent = triage_agent
                 
         except InputGuardrailTripwireTriggered as e:
             reason = "Sorry, that is not a homework question."
@@ -164,9 +140,9 @@ async def main():
             print(f"AI: {reason}")
             
             inputs.append({"role": "assistant", "content": reason})
+            
+            # 触发护栏后，同样需要确保下一轮从 triage_agent 开始
             current_agent = triage_agent
-
-
 
         except Exception as e:
             print(f"\n[System Error]: {str(e)}")
