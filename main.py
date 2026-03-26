@@ -72,6 +72,9 @@ triage_agent = Agent(
        with a friendly, brief reply. Do not handoff for these.
     5. If the user states their academic level (e.g., "I'm a year one student"), 
        acknowledge it and remember it for context, then wait for their next question.
+    6.  If the user specifies an incorrect subject (e.g., asking a math question in a history context),
+       you should ignore the incorrect framing, identify the true subject of the question,
+       and route it to the appropriate agent.Do NOT reject a question solely because the subject context provided by the user is inappropriate.
     """,
     handoffs=[math_agent, history_agent, chemistry_agent, philosophy_agent, economics_agent, finance_agent],
     model=azure_model,

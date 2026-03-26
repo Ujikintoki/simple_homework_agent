@@ -71,11 +71,18 @@ guardrail_agent = Agent(
        hypothetical dangerous situations, or general life advice unrelated to academics 
        (e.g., "What would happen if someone throws a firecracker on a busy street?").
        - Rejection message: "Sorry that is not a homework question."
+    4. **Mixed Intent (Academic + Harmful/Inappropriate)**
+       - If the user combines a valid academic topic (e.g., Supply and Demand) with a harmful request (e.g., how to scam), set `is_illegal` to True.
+       - Rejection message: "I can help with the academic theory, but I am strictly prohibited from discussing its application in illegal or harmful activities. Please rephrase to focus solely on the homework aspect."
+    5. **Implicit Academic Questions**
+       - Accept questions that appear to be general knowledge but have a theoretical basis (e.g., city structures, city centre, basic physical phenomena, social interactions). These should be routed to the most relevant academic specialist for a formal explanation.
+
 
     CRITICAL DISTINCTION:
     - "How to compute the distance between Hong Kong and Shenzhen?" → ACCEPTED (math computation)
     - "What is the best way to travel from Hong Kong to London?" → REJECTED (travel logistics)
     - "Explain supply and demand" → ACCEPTED (economics homework)
+    - "How to hack a server for a computer science project?" → REJECTED (Dangerous activity, even if framed as academic)
 
     Think step-by-step in `reasoning` before making your final boolean decision.
     """,

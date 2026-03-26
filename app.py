@@ -75,7 +75,14 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
 
                 response_text = result.final_output
                 
-                # Update Agent and history (Internal logic)
+                if not response_text or response_text.strip() == "":
+                    response_text = "My core instructions are designed to maintain a safe academic environment. I cannot assist with this request."
+                    is_warning = True
+                else:
+                    is_warning = False
+                # ---------------------------------------
+                
+                # Update Agent and history
                 if hasattr(result, 'current_agent') and result.current_agent:
                     st.session_state.current_agent = result.current_agent
                 
@@ -97,12 +104,11 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
             st.session_state.messages.append({
                 "role": "assistant",
                 "content": response_text,
-                "is_warning": False
+                "is_warning": is_warning 
             })
 
         except InputGuardrailTripwireTriggered as e:
-            # Handle guardrail exceptions
-            reason = "I'm sorry, that is outside my scope."
+            reason = "My core instructions are designed to maintain a safe academic environment. I cannot bypass these protocols or assist with non-academic requests."
             try:
                 if hasattr(e, 'guardrail_result'):
                     reason = e.guardrail_result.output.output_info.get("reason", reason)
@@ -113,13 +119,18 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
                 "content": reason,
                 "is_warning": True
             })
-            # Reset to triage agent after guardrail is triggered
             st.session_state.current_agent = triage_agent
             st.session_state.agent_history.append({"role": "assistant", "content": reason})
 
         except Exception as e:
-            st.error(f"Error: {str(e)}")
-            st.session_state.messages.pop()
+            error_msg = "My core instructions are designed to maintain a safe academic environment. I cannot fulfill this request."
+            
+            st.session_state.messages.append({
+                "role": "assistant",
+                "content": error_msg,
+                "is_warning": True
+            })
+            st.session_state.agent_history.append({"role": "assistant", "content": error_msg})
             
         finally:
             st.session_state.generating = False
