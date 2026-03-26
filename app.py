@@ -168,13 +168,33 @@ if st.session_state.messages and st.session_state.messages[-1]["role"] == "user"
             })
             st.session_state.agent_history.append({"role": "assistant", "content": reason})
 
+        # except Exception as e:
+        #     # 捕获其他系统错误
+        #     error_msg = "My core instructions are designed to maintain a safe academic environment. I cannot fulfill this request."
+            
+        #     st.markdown(f'''
+        #         <div style="padding:8px 12px; border-radius:6px; background-color:#FFF9DB; border-left:4px solid #F4B400; font-size:0.92em;">
+        #         <b>Notice:</b> {error_msg}
+        #         </div>
+        #     ''', unsafe_allow_html=True)
+
+        #     st.session_state.messages.append({
+        #         "role": "assistant",
+        #         "content": error_msg,
+        #         "is_warning": True
+        #     })
+        #     st.session_state.agent_history.append({"role": "assistant", "content": error_msg})
         except Exception as e:
-            # 捕获其他系统错误
-            error_msg = "My core instructions are designed to maintain a safe academic environment. I cannot fulfill this request."
+            import traceback
+            error_detail = str(e)
+            error_msg = f"System Error: {error_detail}"
+            
+            print(f"[DEBUG ERROR] {error_detail}")
+            print(traceback.format_exc())
             
             st.markdown(f'''
-                <div style="padding:8px 12px; border-radius:6px; background-color:#FFF9DB; border-left:4px solid #F4B400; font-size:0.92em;">
-                <b>Notice:</b> {error_msg}
+                <div style="padding:8px 12px; border-radius:6px; background-color:#FFEBEE; border-left:4px solid #D32F2F; font-size:0.92em; color:#B71C1C;">
+                <b>Debug Info:</b> {error_msg}
                 </div>
             ''', unsafe_allow_html=True)
 
