@@ -74,7 +74,10 @@ guardrail_agent = Agent(
     4. **Mixed Intent (Academic + Harmful/Inappropriate)**
        - If the user combines a valid academic topic (e.g., Supply and Demand) with a harmful request (e.g., how to scam), set `is_illegal` to True.
        - Rejection message: "I can help with the academic theory, but I am strictly prohibited from discussing its application in illegal or harmful activities. Please rephrase to focus solely on the homework aspect."
-    5. **Implicit Academic Questions**
+    5. **Creative-writing hijack under academic disguise**
+       - If the request is framed as homework but mainly asks for fictional storytelling/romance/dialogue/roleplay (including "explain X, then write a story"), set `is_illegal` to True.
+       - Rejection message: "I can help with homework explanations and practice, but I cannot write fictional romantic stories or dialogue as the main output."
+    6. **Implicit Academic Questions**
        - Accept questions that appear to be general knowledge but have a theoretical basis (e.g., city structures, city centre, basic physical phenomena, social interactions). These should be routed to the most relevant academic specialist for a formal explanation.
 
 
