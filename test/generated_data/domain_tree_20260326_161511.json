@@ -1,0 +1,1703 @@
+[
+  {
+    "name": "Mathematics",
+    "depth": 0,
+    "atomic": false,
+    "reason": "Mathematics is too broad for focused homework QA; it spans arithmetic, algebra, geometry, calculus, and statistics, each requiring different question types and explanation approaches.",
+    "children": [
+      {
+        "name": "Elementary Mathematics",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Elementary Mathematics covers multiple distinct topic areas (number operations, rational numbers, geometry, measurement) that each warrant separate QA generation for focused homework help.",
+        "children": [
+          {
+            "name": "Number Operations",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Number Operations covers a broad range of distinct topics such as basic arithmetic, exponents/roots, and number theory, so it can be split into more focused subdomains for targeted QA generation.",
+            "children": [
+              {
+                "name": "Arithmetic Operations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth, so the domain is treated as atomic.",
+                "children": []
+              },
+              {
+                "name": "Exponents and Roots",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 equals max depth 3; cannot subdivide further per rules.",
+                "children": []
+              },
+              {
+                "name": "Number Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth, considered atomic for QA generation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Rational Numbers and Percents",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain encompasses distinct skill sets (performing operations with fractions/decimals, converting between forms, and applying percents) that are typically taught separately and warrant focused QA generation.",
+            "children": [
+              {
+                "name": "Operations with Fractions and Decimals",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum depth (3) for the domain tree.",
+                "children": []
+              },
+              {
+                "name": "Conversions Between Fractions, Decimals, and Percents",
+                "depth": 3,
+                "atomic": true,
+                "reason": "The domain is already at the maximum depth and represents a single, cohesive topic—converting between fractions, decimals, and percents—that is specific enough for one topic-focused QA turn in homework tutoring.",
+                "children": []
+              },
+              {
+                "name": "Real-World Percent Problem Solving",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth and represents a cohesive topic for single QA turn focusing on applied percent calculations in authentic contexts like shopping, finance, and data interpretation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Geometry and Measurement",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Geometry and Measurement is broad, covering 2D shapes, 3D solids, area calculations, volume, and unit conversions - too diverse for a single focused QA turn in homework tutoring.",
+            "children": [
+              {
+                "name": "Plane Geometry",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth (3), must be treated as atomic per rules.",
+                "children": []
+              },
+              {
+                "name": "Solid Geometry",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth (3), and solid geometry is already a specific enough topic for one focused homework QA turn, covering 3D shapes like prisms, pyramids, spheres, cylinders, and cones.",
+                "children": []
+              },
+              {
+                "name": "Measurement Principles",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max_depth (3), and 'Measurement Principles' is specific enough to generate focused QA questions about units, accuracy, conversion, and measurement techniques.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Algebra and Functions",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Algebra and Functions is too broad for a single QA turn, covering distinct topics like linear equations, quadratic functions, polynomials, exponentials, and logarithms that require different problem-solving approaches.",
+        "children": [
+          {
+            "name": "Linear Equations, Inequalities, and Systems",
+            "depth": 2,
+            "atomic": false,
+            "reason": "This domain covers three distinct homework topics that can be tackled independently: single-variable linear equations and inequalities, solving systems of equations, and graphing systems of inequalities.",
+            "children": [
+              {
+                "name": "Linear Equations and Inequalities in One Variable",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth, the domain covers both linear equations and inequalities which are typically taught together as one instructional unit and can be addressed in a single topic-focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Systems of Linear Equations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              },
+              {
+                "name": "Systems of Linear Inequalities",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 equals max depth, and 'Systems of Linear Inequalities' is a well-defined topic suitable for one topic-focused QA turn covering graphing, shading, and solving word problems.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Quadratic and Polynomial Functions",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers two broad categories (quadratics and general polynomials) with distinct skills including graphing, finding roots, operations, and theorems that would span multiple homework QA turns.",
+            "children": [
+              {
+                "name": "Quadratic Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Quadratic Functions is a specific, focused mathematical topic appropriate for a single QA turn, and depth equals max_depth, requiring atomic status.",
+                "children": []
+              },
+              {
+                "name": "Polynomial Arithmetic",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth (3), and polynomial arithmetic is specific enough for one topic-focused QA turn covering operations like addition, subtraction, multiplication, and division of polynomials.",
+                "children": []
+              },
+              {
+                "name": "Polynomial Properties and Graphs",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Maximum depth reached; domain is terminal.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Exponential and Logarithmic Functions",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers two related but distinct types of functions, each with multiple properties and applications. Splitting into subdomains allows for more focused QA generation.",
+            "children": [
+              {
+                "name": "Exponential Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth, so this domain is treated as atomic by rule.",
+                "children": []
+              },
+              {
+                "name": "Logarithmic Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth reached max_depth and logarithmic functions is a cohesive mathematical topic that can generate diverse but focused QA content.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Geometry and Trigonometry",
+        "depth": 1,
+        "atomic": false,
+        "reason": "The domain combines two broad areas that can be split into distinct subdomains for focused QA.",
+        "children": [
+          {
+            "name": "Plane Geometry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Plane geometry encompasses multiple distinct shape categories with different properties and formulas; separating them enables focused topic-specific QA generation for triangles, circles, and polygons.",
+            "children": [
+              {
+                "name": "Triangles and Their Properties",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth, thus considered atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Circles and Their Properties",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reaches maximum depth and covers a single focused topic suitable for a QA turn",
+                "children": []
+              },
+              {
+                "name": "Polygons and Quadrilaterals",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth, and the domain is already specific enough for a focused QA turn on polygons and quadrilaterals.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Solid Geometry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Solid geometry encompasses multiple distinct categories of 3D shapes with different properties and formulas. Breaking it into subdomains allows for focused QA generation on specific shape types and their applications.",
+            "children": [
+              {
+                "name": "Prisms and Cylinders",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 equals max depth 3, so must be atomic. Additionally, 'Prisms and Cylinders' is specific enough for one topic-focused homework QA turn covering volume, surface area, and properties of these 3D solids.",
+                "children": []
+              },
+              {
+                "name": "Pyramids and Cones",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth and is specific enough for a single topic-focused QA turn on pyramids and cones.",
+                "children": []
+              },
+              {
+                "name": "Spheres and Spherical Geometry",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 reached maximum depth, domain is treated as atomic.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Trigonometry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Trigonometry encompasses multiple distinct skill areas (basic functions, identities/equations, and applications) that would generate fragmented or unfocused QA content if combined.",
+            "children": [
+              {
+                "name": "Basic Trigonometric Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth and is specific enough for a single QA turn",
+                "children": []
+              },
+              {
+                "name": "Trigonometric Identities and Equations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Maximum depth (3) reached. Domain is specific enough for a single topic-focused QA turn covering both identities and equations, which are typically taught together in one unit.",
+                "children": []
+              },
+              {
+                "name": "Applications of Trigonometry",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3), making it atomic by definition",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "History",
+    "depth": 0,
+    "atomic": false,
+    "reason": "History encompasses too many distinct eras, regions, and topics (ancient civilizations, medieval kingdoms, modern nations, world wars) to generate focused QA data for one tutoring session.",
+    "children": [
+      {
+        "name": "Ancient and Classical History",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Ancient and Classical History encompasses too many distinct civilizations, time periods, and topics (Greece, Rome, Egypt, Mesopotamia, Persia, etc.) that would generate fundamentally different types of homework questions requiring different knowledge bases.",
+        "children": [
+          {
+            "name": "Ancient Greece and Rome",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers two broad civilizations and multiple thematic areas, making it too broad for a single QA turn.",
+            "children": [
+              {
+                "name": "Greek Civilization: Politics, Society, and Culture",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum specified depth (3), therefore must be treated as atomic for this taxonomy",
+                "children": []
+              },
+              {
+                "name": "Roman Civilization: Politics, Society, and Culture",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth of 3, providing sufficient specificity for topic-focused QA generation.",
+                "children": []
+              },
+              {
+                "name": "Mythology, Religion, and Philosophy of Greece and Rome",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth (3), and while broad, it represents a coherent cultural area (Greece and Rome) that can support focused QA turns on specific topics within mythology, religion, or philosophy.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Ancient Egypt and Mesopotamia",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain combines two distinct ancient civilizations with separate histories, cultures, and topics. Students typically study one civilization at a time, making them better suited as separate subdomains for focused QA generation.",
+            "children": [
+              {
+                "name": "Ancient Egypt",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals the maximum allowed depth (3), so this domain is considered atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Ancient Mesopotamia",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth (3) and represents a specific, coherent historical topic suitable for one focused homework QA turn covering its civilization, culture, and achievements.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Ancient Asian Civilizations",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Covers multiple distinct ancient Asian civilizations; a single QA turn should focus on a specific civilization.",
+            "children": [
+              {
+                "name": "Ancient Chinese Civilizations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum allowed depth of 3 levels",
+                "children": []
+              },
+              {
+                "name": "Ancient Indian Civilizations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum taxonomy depth, so it is atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Ancient Southeast Asian Civilizations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum taxonomy depth (3), making further subdivision impossible within current constraints",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Medieval and Early Modern History",
+        "depth": 1,
+        "atomic": false,
+        "reason": "The domain spans multiple centuries and regions, covering diverse topics too broad for a single QA turn.",
+        "children": [
+          {
+            "name": "Medieval Europe Society and Culture",
+            "depth": 2,
+            "atomic": false,
+            "reason": "...",
+            "children": [
+              {
+                "name": "Social Structure and Feudalism",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth (3) and covers a specific historical topic (feudalism and social hierarchy) that can be comprehensively addressed in one focused QA session without further subdivision.",
+                "children": []
+              },
+              {
+                "name": "Religion and the Church",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Maximum depth reached. The domain is broad but at the specified depth limit, it must be treated as atomic.",
+                "children": []
+              },
+              {
+                "name": "Economy and Trade",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Maximum taxonomy depth reached",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Early Modern Europe Politics and Economy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers two broad thematic areas (politics and economy) across three centuries of European history, making it too broad for a single focused QA turn. These topics could generate independent, distinct questions about political structures, economic systems, or their intersection.",
+            "children": [
+              {
+                "name": "Political Institutions and State Formation",
+                "depth": 3,
+                "atomic": true,
+                "reason": "The domain has reached the maximum taxonomy depth (3), so it must be treated as atomic. It is also specific enough to support a single topic-focused QA turn without further subdivision.",
+                "children": []
+              },
+              {
+                "name": "Mercantile Systems and Commercial Networks",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth, considered atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Religious Conflicts and Social Transformations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Current depth (3) equals the maximum depth (3), so the domain cannot be further subdivided.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Medieval and Early Modern Global Interactions",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers multiple distinct aspects of medieval and early modern global interactions, such as trade, cultural exchange, and political dynamics, which are better separated for targeted QA generation.",
+            "children": [
+              {
+                "name": "Transregional Trade Networks",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3), and the topic is already specific enough for a focused QA turn covering historical trade networks, routes, goods, and economic/cultural impacts.",
+                "children": []
+              },
+              {
+                "name": "Cultural and Religious Exchanges",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max_depth of 3, which is sufficient for generating one topic-focused QA turn about cultural and religious exchanges as a unified subject area.",
+                "children": []
+              },
+              {
+                "name": "Political and Military Interactions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Modern and Contemporary History",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Modern and Contemporary History spans from the late 18th century to present day, covering diverse topics like revolutions, wars, social movements, and economic changes that require different expertise and contexts for tutoring.",
+        "children": [
+          {
+            "name": "Political and Military History",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain combines two major, distinct fields (political and military history) each containing numerous specific topics that would require different types of homework questions and knowledge bases.",
+            "children": [
+              {
+                "name": "Political History",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth (3), which triggers atomic=true per rules.",
+                "children": []
+              },
+              {
+                "name": "Military History",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Social and Cultural Movements",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain is broad and covers multiple distinct topics that benefit from separate QA focus.",
+            "children": [
+              {
+                "name": "Civil Rights and Social Justice Movements",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth level (depth 3 = max_depth 3)",
+                "children": []
+              },
+              {
+                "name": "Cultural and Artistic Movements",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth (3) and specific enough for one topic-focused QA turn on artistic movements.",
+                "children": []
+              },
+              {
+                "name": "Environmental and Climate Activism Movements",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 equals max depth, and the domain represents a cohesive topic area suitable for focused QA generation covering activism strategies, historical movements, and key figures.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Economic and Technological Development",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Combines two distinct but related areas (economics and technology) that each have multiple sub-topics suitable for separate QA turns in homework context",
+            "children": [
+              {
+                "name": "Economic Growth and Development",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum taxonomy depth (3), and per rule 1, domains at max_depth must be set as atomic.",
+                "children": []
+              },
+              {
+                "name": "Technological Innovation and Progress",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached max depth and is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Development Policy and Strategy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth level (depth 3 = max depth 3), and must be treated as atomic per rules.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Chemistry",
+    "depth": 0,
+    "atomic": false,
+    "reason": "Chemistry is too broad for focused homework QA; it encompasses distinct branches with different concepts, terminology, and problem-solving approaches.",
+    "children": [
+      {
+        "name": "Organic Chemistry",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Organic Chemistry is a broad discipline that encompasses multiple distinct subfields such as molecular structure, reaction mechanisms, and synthesis, which are too varied to be covered in a single QA turn.",
+        "children": [
+          {
+            "name": "Molecular Structure and Stereochemistry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "This domain covers two distinct but related areas (molecular structure and stereochemistry), each containing multiple subtopics that could generate separate focused QA turns.",
+            "children": [
+              {
+                "name": "Molecular Bonding and Lewis Structures",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth (3) and represents a cohesive topic area sufficient for one focused homework question, typically covering Lewis structure drawing or analysis.",
+                "children": []
+              },
+              {
+                "name": "Molecular Geometry and VSEPR Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "VSEPR Theory and molecular geometry is a standard cohesive topic typically covered in 1-2 chapters of general chemistry, representing one homework unit.",
+                "children": []
+              },
+              {
+                "name": "Stereochemistry and Isomerism",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth (3), so by rule this domain must be atomic regardless of content. The topic is coherent and suitable for a single QA turn.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Organic Reaction Mechanisms",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Organic Reaction Mechanisms is a major umbrella topic covering distinct mechanism types (substitution, elimination, addition, carbonyl reactions) that are typically taught and tested separately.",
+            "children": [
+              {
+                "name": "Nucleophilic Substitution and Elimination Mechanisms",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Maximum depth reached with distinct yet related organic reaction mechanisms; coherent as single QA topic",
+                "children": []
+              },
+              {
+                "name": "Electrophilic Addition Reactions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth (3), which requires atomic=true per rules.",
+                "children": []
+              },
+              {
+                "name": "Carbonyl Group Reactions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Organic Synthesis and Retrosynthesis",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain encompasses both forward synthesis planning and retrosynthetic analysis, which are distinct topics that can each be the focus of a single QA turn. Splitting them into separate subdomains enables more precise question generation.",
+            "children": [
+              {
+                "name": "Retrosynthetic Analysis and Disconnection Strategies",
+                "depth": 3,
+                "atomic": true,
+                "reason": "The domain covers both theoretical concepts (retrosynthetic analysis principles) and practical techniques (specific disconnection strategies), which can generate distinct QA types for homework tutoring.",
+                "children": []
+              },
+              {
+                "name": "Synthetic Route Design and Reaction Selection",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth and is specific enough for a single focused QA.",
+                "children": []
+              },
+              {
+                "name": "Functional Group Manipulation and Protecting Group Use",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth reached maximum; domain considered atomic for QA generation.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Inorganic Chemistry",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Inorganic Chemistry is a broad field containing multiple distinct sub-disciplines that generate different types of homework questions with minimal overlap.",
+        "children": [
+          {
+            "name": "Main Group Elements",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Main Group Elements covers diverse topics including periodic trends, element properties, chemical reactions, and specific element groups, which would require multiple distinct tutoring sessions.",
+            "children": [
+              {
+                "name": "Periodic trends and periodicity",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth; domain is specific enough for one topic-focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Chemical properties and reactions of main group elements",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth, so treat as atomic",
+                "children": []
+              },
+              {
+                "name": "Specific element groups and their applications",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 equals max depth 3, so the taxonomy has reached its maximum allowed depth and must be treated as atomic per rules.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Transition Metal Chemistry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Transition Metal Chemistry encompasses multiple distinct conceptual areas that are better separated for targeted QA generation.",
+            "children": [
+              {
+                "name": "Coordination Chemistry and Ligand Design",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached max depth (3) and is specific enough for a single topic-focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Crystal Field and Ligand Field Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth (3), the domain encompasses both CFT and LFT concepts which are traditionally taught as a combined topic covering d-orbital splitting, spectrochemical series, CFSE, and Jahn-Teller effects.",
+                "children": []
+              },
+              {
+                "name": "Transition Metal Reactivity and Catalysis",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth; domain considered atomic for QA generation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Organometallic Chemistry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Organometallic chemistry is a broad field covering many distinct classes of compounds and reactions, so it benefits from being split into focused subdomains for targeted QA generation.",
+            "children": [
+              {
+                "name": "Transition Metal Organometallics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth; domain is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Main-Group Organometallics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached max depth (3), must be treated as atomic per rules.",
+                "children": []
+              },
+              {
+                "name": "Organometallic Catalysis",
+                "depth": 3,
+                "atomic": true,
+                "reason": "domain reaches max depth and is specific enough for a single topic-focused QA turn",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Physical Chemistry",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Physical Chemistry encompasses a wide range of distinct concepts (thermodynamics, kinetics, quantum chemistry, etc.) that each require focused Q&A, so it is not atomic for practical homework QA.",
+        "children": [
+          {
+            "name": "Thermodynamics",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Thermodynamics encompasses distinct topic areas (laws, cycles, properties) that generate different question types and require different problem-solving approaches for students.",
+            "children": [
+              {
+                "name": "Laws of Thermodynamics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "The topic is already at the maximum depth and is specific enough to be covered in a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Heat Engines and Refrigerators",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3), domain is treated as atomic.",
+                "children": []
+              },
+              {
+                "name": "Phase Changes and Thermodynamic Properties",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum taxonomy depth (3), requiring it to be treated as atomic despite its breadth.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Chemical Kinetics",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Chemical Kinetics is a broad field covering multiple distinct homework problem types including rate law determination, concentration-time relationships, and activation energy calculations",
+            "children": [
+              {
+                "name": "Rate Laws and Order of Reaction",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth, this domain is specific enough for one topic-focused QA turn covering rate law expressions, reaction order analysis, and integrated rate laws.",
+                "children": []
+              },
+              {
+                "name": "Integrated Rate Laws and Half-Life",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum taxonomy depth (3) and covers a single cohesive topic suitable for a focused Q&A.",
+                "children": []
+              },
+              {
+                "name": "Activation Energy and Reaction Mechanisms",
+                "depth": 3,
+                "atomic": true,
+                "reason": "This domain combines two related but distinct concepts (activation energy and reaction mechanisms) that each generate independent QA scenarios and require separate question focus areas.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Quantum Chemistry",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Quantum Chemistry is a broad field covering multiple distinct topics such as electronic structure, molecular properties, and computational methods that require separate QA contexts.",
+            "children": [
+              {
+                "name": "Electronic Structure Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth; domain is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Molecular Spectroscopy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum allowed depth for the taxonomy, the domain is treated as atomic and cannot be further subdivided.",
+                "children": []
+              },
+              {
+                "name": "Computational Quantum Chemistry",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain depth equals max depth, therefore considered atomic for QA generation.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Economics",
+    "depth": 0,
+    "atomic": false,
+    "reason": "Economics is a broad academic discipline encompassing distinct theoretical frameworks, methodologies, and subject areas that generate fundamentally different types of homework questions.",
+    "children": [
+      {
+        "name": "Microeconomics",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Microeconomics covers multiple distinct conceptual areas such as consumer behavior, producer behavior, and market structures, requiring decomposition for targeted QA.",
+        "children": [
+          {
+            "name": "Consumer Theory",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Consumer Theory encompasses multiple distinct skill areas (preferences/utility, budget constraints, demand analysis) that generate separate homework question patterns",
+            "children": [
+              {
+                "name": "Preferences and Utility Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth, this domain covers a coherent topic area (preference theory and utility representation in economics/decision theory) suitable for one focused homework QA turn, including axioms of preference, utility function construction, and optimization under constraints.",
+                "children": []
+              },
+              {
+                "name": "Budget Constraint and Optimal Choice",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth; domain is treated as atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Demand Curves and Consumer Welfare",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached max depth of 3. The domain covers both demand curve analysis and consumer welfare measurement, which are closely related concepts typically taught together in introductory microeconomics as a unified topic on market efficiency.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Producer Theory",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Producer Theory encompasses multiple distinct decision-making frameworks (technology/inputs, cost minimization, and profit optimization) that generate fundamentally different homework question types requiring different analytical approaches.",
+            "children": [
+              {
+                "name": "Production Functions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals maximum allowed depth, so domain is treated as atomic.",
+                "children": []
+              },
+              {
+                "name": "Cost Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth of 3",
+                "children": []
+              },
+              {
+                "name": "Profit Maximization",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth with a well-defined economic concept suitable for a single focused QA interaction",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Market Structures",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Market Structures encompasses several distinct market types that each warrant separate Q&A, so it should be split.",
+            "children": [
+              {
+                "name": "Perfect Competition",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum depth (3). Perfect Competition is a specific, well-defined market structure concept that covers characteristics, equilibrium, and efficiency. It is focused enough for one topic-specific QA tutoring turn without requiring further decomposition.",
+                "children": []
+              },
+              {
+                "name": "Monopoly",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3), the domain is specific enough for one topic-focused QA turn. Monopoly can serve as a unified topic covering game mechanics, strategy, and economics applications.",
+                "children": []
+              },
+              {
+                "name": "Oligopoly and Monopolistic Competition",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth (3), so domain is treated as atomic.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Macroeconomics",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Macroeconomics encompasses multiple distinct topic areas (measurement, economic relationships, policy) that generate different types of homework questions requiring different problem-solving approaches.",
+        "children": [
+          {
+            "name": "National Income and Economic Measurement",
+            "depth": 2,
+            "atomic": false,
+            "reason": "This domain covers multiple distinct measurement concepts (national income aggregates, price indices, and growth rates) that can each generate focused homework questions about specific calculations or applications.",
+            "children": [
+              {
+                "name": "National Income Accounting and GDP/GNP Concepts",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Covers a specific, cohesive macroeconomics topic with GDP and GNP as related measurement approaches typically taught together in one unit.",
+                "children": []
+              },
+              {
+                "name": "Price Indices and Inflation Measurement",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth level 3; must be treated as atomic per rules.",
+                "children": []
+              },
+              {
+                "name": "Economic Growth and Productivity Measures",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain covers multiple distinct topics including GDP accounting, productivity calculations, and growth theory that would generate divergent question types requiring different foundational knowledge.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Inflation Unemployment and Phillips Curve",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers three distinct but related macroeconomic concepts that require separate focused QA generation. Each subdomain addresses a distinct theoretical framework with specific learning outcomes.",
+            "children": [
+              {
+                "name": "Inflation Theory and Measurement",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth level (3), domain is sufficiently specific for focused QA generation on inflation theory and measurement",
+                "children": []
+              },
+              {
+                "name": "Unemployment Types and Analysis",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              },
+              {
+                "name": "Phillips Curve Relationship",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum taxonomy depth (3), so it must be considered atomic for further subdivision.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Monetary and Fiscal Policy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The topic covers two broad areas—monetary and fiscal policy—each with multiple distinct tools, objectives, and interactions, making it too wide for a single focused QA turn.",
+            "children": [
+              {
+                "name": "Monetary Policy Tools",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth and represents a focused topic suitable for a single homework QA session on central bank monetary instruments.",
+                "children": []
+              },
+              {
+                "name": "Fiscal Policy Tools",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max_depth (3), making it terminal for taxonomy purposes",
+                "children": []
+              },
+              {
+                "name": "Policy Interaction and Macroeconomic Effects",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth (3/3), the domain is considered atomic by rule. While 'Policy Interaction and Macroeconomic Effects' is conceptually broad, the depth constraint takes precedence.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "International Economics",
+        "depth": 1,
+        "atomic": false,
+        "reason": "International Economics covers multiple distinct topic areas (trade theory, monetary economics, trade policy) that each warrant separate homework QA sessions",
+        "children": [
+          {
+            "name": "International Trade Theory",
+            "depth": 2,
+            "atomic": false,
+            "reason": "International Trade Theory encompasses multiple distinct theoretical frameworks (classical vs modern), policy instruments, and empirical applications that would require separate QA sessions for effective tutoring.",
+            "children": [
+              {
+                "name": "Classical Trade Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain depth reached maximum; further partitioning not required for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Modern Trade Theory",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Modern Trade Theory is a defined subfield of economics with clear boundaries (covering new trade theory, new-new trade theory, and gravity models). It can be comprehensively addressed in one topic-focused QA turn without requiring further decomposition.",
+                "children": []
+              },
+              {
+                "name": "Trade Policy and Instruments",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals maximum allowed depth, so this domain must be treated as atomic.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "International Monetary Economics",
+            "depth": 2,
+            "atomic": false,
+            "reason": "International Monetary Economics encompasses multiple distinct topics that can each be addressed separately in a homework Q&A.",
+            "children": [
+              {
+                "name": "Exchange Rate Determination and Exchange Rate Systems",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3), the domain represents a coherent topic area combining exchange rate theories and regimes, suitable for a single focused tutoring session on international monetary economics.",
+                "children": []
+              },
+              {
+                "name": "Balance of Payments and International Trade Accounting",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth, so this domain is treated as atomic.",
+                "children": []
+              },
+              {
+                "name": "International Monetary Policy and Global Financial Markets",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum taxonomy depth (3), domain must be treated as atomic",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Trade Policy and Commercial Policy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Trade Policy and Commercial Policy encompasses multiple distinct topics (tariffs, trade agreements, regulatory frameworks) that would generate unfocused or inconsistent QA data if combined, and depth 2 of 3 allows further subdivision.",
+            "children": [
+              {
+                "name": "Tariffs, Trade Barriers, and Trade Remedies",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum depth and represents a specific topic suitable for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "International Trade Agreements and Treaties",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain已达到最大深度，且已足够具体，可作为一个聚焦的问答主题使用。",
+                "children": []
+              },
+              {
+                "name": "Import-Export Regulations and Compliance",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3). The topic of import-export regulations and compliance is sufficiently focused for one topic-specific QA turn, covering key concepts like customs procedures, documentation requirements, tariffs, and trade compliance.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Finance",
+    "depth": 0,
+    "atomic": false,
+    "reason": "Finance is too broad for focused QA generation, encompassing distinct areas like personal budgeting, corporate valuation, and market instruments that require different expertise.",
+    "children": [
+      {
+        "name": "Personal Finance",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Personal Finance is a broad field encompassing distinct areas like budgeting, investing, taxes, and retirement planning that can each stand alone as focused homework topics.",
+        "children": [
+          {
+            "name": "Budgeting and Expense Management",
+            "depth": 2,
+            "atomic": false,
+            "reason": "This domain combines budgeting strategies, expense tracking, and financial goal management, which are distinct topics that can be split for targeted homework QA generation.",
+            "children": [
+              {
+                "name": "Budgeting Techniques and Planning",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3/3), the domain 'Budgeting Techniques and Planning' is specific enough for a single topic-focused QA turn, covering practical budgeting methods and financial planning strategies.",
+                "children": []
+              },
+              {
+                "name": "Expense Tracking and Categorization",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3), the domain covers a cohesive topic combining expense recording and categorization, which is specific enough for one topic-focused homework QA turn on personal finance or basic accounting fundamentals.",
+                "children": []
+              },
+              {
+                "name": "Savings Goals and Debt Management",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth and covers a focused topic area suitable for single QA turn generation",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Investing and Portfolio Basics",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers multiple distinct concepts that can be split into narrower subdomains for targeted QA generation.",
+            "children": [
+              {
+                "name": "Asset Classes and Securities",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth (3), so it must be treated as atomic per the rules.",
+                "children": []
+              },
+              {
+                "name": "Risk and Return Analysis",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth; domain is specific enough for a single focused QA turn on risk and return concepts.",
+                "children": []
+              },
+              {
+                "name": "Portfolio Construction and Management",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth has reached the maximum (3), so the domain is treated as atomic for data generation purposes.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Tax Planning and Income Management",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Combines two distinct personal finance topics that generate separate homework question types: tax strategies and income/budgeting decisions.",
+            "children": [
+              {
+                "name": "Tax Planning Strategies",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reaches maximum depth and is specific enough for a single topic-focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Personal Income and Budgeting",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth and is specific enough for a single topic-focused homework QA turn covering personal income sources and budgeting fundamentals.",
+                "children": []
+              },
+              {
+                "name": "Tax Compliance and Filing",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth and is specific enough for a focused QA turn.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Corporate Finance",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Corporate Finance is a broad field that includes multiple distinct topics requiring separate QA focus.",
+        "children": [
+          {
+            "name": "Capital Structure & Cost of Capital",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers both theoretical concepts (capital structure theories) and quantitative calculations (WACC, cost of capital components) which are distinct enough to generate separate focused homework QA items.",
+            "children": [
+              {
+                "name": "Capital Structure Theories and Decisions",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth (3), making it a terminal node in the taxonomy structure.",
+                "children": []
+              },
+              {
+                "name": "Cost of Capital Components and Calculations",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth and represents a single coherent finance topic that can generate focused homework questions covering either individual component costs or WACC calculations within one QA turn.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Valuation & Investment Appraisal",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers multiple distinct topics such as discounted cash flow analysis, relative valuation, and risk analysis, which can be treated as separate QA subjects.",
+            "children": [
+              {
+                "name": "Discounted Cash Flow Analysis",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth level (3) and is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Relative Valuation Using Multiples",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3) and is specific enough to cover one focused topic-focused QA turn on relative valuation using multiples.",
+                "children": []
+              },
+              {
+                "name": "Risk and Sensitivity Analysis in Investment Appraisal",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth and is specific enough for a single QA turn.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Working Capital Management",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Working Capital Management contains distinct components (cash, receivables, inventory, payables), analysis methods (ratios, cash conversion cycle), and financing strategies that warrant separate QA coverage.",
+            "children": [
+              {
+                "name": "Cash and Liquidity Management",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth reached max; domain is specific enough for a single QA turn",
+                "children": []
+              },
+              {
+                "name": "Receivables and Inventory Optimization",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At max depth (3), domain is sufficiently specific for single topic QA generation; receivables and inventory optimization represent distinct but related operational finance topics",
+                "children": []
+              },
+              {
+                "name": "Payables and Cash Conversion Cycle",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain depth reaches max depth and is specific enough for a single QA turn.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "Financial Markets and Instruments",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Domain covers multiple distinct topic areas including stocks, bonds, derivatives, and market mechanisms that would generate fragmented, unrelated QA content.",
+        "children": [
+          {
+            "name": "Equity Markets and Instruments",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain combines two distinct concepts (markets where equities trade vs. types of equity securities) that warrant separate homework QA focus areas.",
+            "children": [
+              {
+                "name": "Equity Markets",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth; domain is specific enough for a single topic-focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Equity Instruments",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum depth level; must be treated as atomic for boundary testing purposes.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Fixed Income and Debt Markets",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain encompasses bond valuation, risk analytics, and various debt instruments - too broad for a single focused QA turn.",
+            "children": [
+              {
+                "name": "Bond Valuation and Pricing",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth reached the maximum allowed; the domain is specific enough for a single focused QA turn.",
+                "children": []
+              },
+              {
+                "name": "Fixed Income Risk and Analytics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth 3 meets max depth 3 threshold; domain is treated as atomic per rule that depth >= max_depth requires atomic=true",
+                "children": []
+              },
+              {
+                "name": "Debt Instruments and Securities",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3) per specification. While Debt Instruments and Securities is broad in scope, the depth constraint requires atomic classification at this level.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Derivative Instruments and Markets",
+            "depth": 2,
+            "atomic": false,
+            "reason": "This domain covers multiple distinct concepts - derivative instrument types, pricing models, and market applications - which could generate fragmented or unfocused QA content without decomposition.",
+            "children": [
+              {
+                "name": "Derivative Instrument Types",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max_depth, requiring atomic classification",
+                "children": []
+              },
+              {
+                "name": "Derivative Pricing Models",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum depth (3) allowed for taxonomy generation; cannot decompose further despite the breadth of derivative pricing topics",
+                "children": []
+              },
+              {
+                "name": "Derivative Trading Strategies",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth of 3, making it atomic for data generation purposes.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Philosophy",
+    "depth": 0,
+    "atomic": false,
+    "reason": "Philosophy is too broad for practical homework QA; it encompasses distinct areas like ethics, logic, metaphysics, epistemology, and political philosophy that require different expertise and question types.",
+    "children": [
+      {
+        "name": "Ethics and Moral Philosophy",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Domain covers a broad range of topics requiring narrower focus for a single QA turn.",
+        "children": [
+          {
+            "name": "Normative Ethical Theories",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Normative Ethical Theories is a broad category that encompasses multiple distinct theoretical frameworks commonly taught separately in philosophy courses.",
+            "children": [
+              {
+                "name": "Consequentialist Theories",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth (3) and domain is specific enough for a focused QA turn covering consequentialist theories including utilitarianism, types of consequentialism, and evaluation criteria.",
+                "children": []
+              },
+              {
+                "name": "Deontological Theories",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Current depth (3) equals max depth (3), so atomic=true by rule. Additionally, 'Deontological Theories' is specific enough for one topic-focused QA turn in homework tutoring.",
+                "children": []
+              },
+              {
+                "name": "Virtue Ethics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "At maximum depth, domain is atomic.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Applied Ethics",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Applied Ethics spans multiple distinct topic areas (e.g., medical, environmental, business) that each require focused QA turns; therefore it is not atomic at depth 2.",
+            "children": [
+              {
+                "name": "Medical Ethics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum depth (3), required to be treated as atomic by rule.",
+                "children": []
+              },
+              {
+                "name": "Environmental Ethics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum taxonomy depth, considered atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Business Ethics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum taxonomy depth (3).",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Metaethics",
+            "depth": 2,
+            "atomic": true,
+            "reason": "Metaethics is a standard, focused unit in ethics coursework covering foundational questions about moral nature and language. It is specific enough for a single topic-focused QA turn in homework tutoring, as students typically encounter it as one cohesive module addressing questions like moral realism, anti-realism, and the meaning of moral terms.",
+            "children": []
+          }
+        ]
+      },
+      {
+        "name": "Logic and Critical Reasoning",
+        "depth": 1,
+        "atomic": false,
+        "reason": "Logic and Critical Reasoning is a broad field that encompasses multiple distinct areas (formal logic, fallacies, argument analysis, reasoning methods) that require different types of QA data.",
+        "children": [
+          {
+            "name": "Formal Logic and Symbolic Reasoning",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers multiple distinct homework question types (truth-functional reasoning, formal proofs, symbolic interpretation) that warrant separate focused QA turns.",
+            "children": [
+              {
+                "name": "Propositional Logic and Truth Tables",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached max depth (3) and represents a cohesive introductory topic that can generate focused QA items for one tutoring session (evaluating propositions, constructing truth tables, identifying logical relationships).",
+                "children": []
+              },
+              {
+                "name": "Predicate Logic and Formal Proofs",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth (3) and represents a cohesive topic area focused on predicate logic fundamentals and formal proof techniques, suitable for one topic-focused QA turn without further subdivision.",
+                "children": []
+              },
+              {
+                "name": "Logical Fallacies and Symbolic Reasoning",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum allowed depth, cannot split further.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Logical Fallacies and Argument Evaluation",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers multiple distinct skill areas—fallacy identification, argument structure analysis, and evaluation methodology—that would benefit from separate focused QA generation.",
+            "children": [
+              {
+                "name": "Logical Fallacy Recognition and Classification",
+                "depth": 3,
+                "atomic": true,
+                "reason": "...",
+                "children": []
+              },
+              {
+                "name": "Argument Validity and Soundness Evaluation",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth and specific enough for a single focused QA turn on argument validity and soundness evaluation.",
+                "children": []
+              },
+              {
+                "name": "Critical Analysis of Reasoning Patterns",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at max depth, considered atomic for QA generation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Inductive and Deductive Reasoning Methods",
+            "depth": 2,
+            "atomic": false,
+            "reason": "The domain covers two distinct reasoning approaches that can each be explored independently in a focused QA turn. Students typically ask about inductive or deductive methods separately, making them practical subdomains.",
+            "children": [
+              {
+                "name": "Inductive Reasoning Methods",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth has reached maximum depth limit (3), so this domain must be treated as atomic regardless of topic granularity.",
+                "children": []
+              },
+              {
+                "name": "Deductive Reasoning Methods",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached max depth and is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Comparative Analysis of Reasoning Methods",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Reached maximum taxonomy depth (3/3). The domain, while broad, cannot be further subdivided within the current depth constraints.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "History of Philosophy",
+        "depth": 1,
+        "atomic": false,
+        "reason": "History of Philosophy is too broad for focused homework QA, spanning thousands of years from ancient thinkers to contemporary debates. Breaking it into eras allows for targeted question generation about specific periods and their distinct themes.",
+        "children": [
+          {
+            "name": "Ancient Philosophy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Ancient Philosophy encompasses many periods and major philosophers; a tutoring QA turn typically focuses on a specific era or thinker, so the domain is not atomic.",
+            "children": [
+              {
+                "name": "Pre-Socratic and Early Greek Thought",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum allowed depth, making it atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Classical Athenian Philosophy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Current depth (3) equals the maximum depth, so the domain must be treated as atomic for QA generation.",
+                "children": []
+              },
+              {
+                "name": "Hellenistic and Roman Philosophy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "This domain spans multiple distinct philosophical schools with different core concepts, texts, and figures. Stoicism, Epicureanism, and Skepticism/Neoplatonism each require different approaches for homework QA generation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Modern Philosophy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Modern Philosophy (c.1600-1900) encompasses multiple distinct movements, from Rationalism/Empiricism debates through Kantian critique to Utilitarian ethics, which could yield inconsistent QA content if grouped together.",
+            "children": [
+              {
+                "name": "Rationalism and Empiricism",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached maximum allowed depth (3), which mandates atomic treatment per rules. Additionally, 'Rationalism and Empiricism' represents a unified topic covering contrasting epistemological traditions commonly taught together in philosophy courses.",
+                "children": []
+              },
+              {
+                "name": "Kantian Philosophy and German Idealism",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached the maximum depth and is specific enough for a single QA turn.",
+                "children": []
+              },
+              {
+                "name": "Utilitarianism and 19th Century Ethics",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain reached maximum taxonomy depth; treated as atomic for QA generation.",
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Contemporary Philosophy",
+            "depth": 2,
+            "atomic": false,
+            "reason": "Contemporary Philosophy encompasses multiple distinct traditions and methodological approaches that generate different types of homework questions. Students typically study one specific tradition or problem area, making targeted subdomains more useful for QA generation.",
+            "children": [
+              {
+                "name": "Analytic Philosophy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Depth equals max depth; must treat as atomic per rules",
+                "children": []
+              },
+              {
+                "name": "Continental Philosophy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain is at maximum allowed depth (3) in the taxonomy.",
+                "children": []
+              },
+              {
+                "name": "Pragmatist Philosophy",
+                "depth": 3,
+                "atomic": true,
+                "reason": "Domain has reached the maximum taxonomy depth (3), so it is treated as atomic for QA data generation.",
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+]

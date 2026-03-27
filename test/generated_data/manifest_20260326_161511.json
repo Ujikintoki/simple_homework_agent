@@ -1,0 +1,11 @@
+{
+  "generated_at_utc": "20260326_161511",
+  "tree_file": "test\\generated_data\\domain_tree_20260326_161511.json",
+  "dataset_file": "test\\generated_data\\boundary_dataset_20260326_161511.jsonl",
+  "total_rows": 943,
+  "breakdown": {
+    "leaf_positive": 456,
+    "leaf_negative": 457,
+    "red_team": 30
+  }
+}

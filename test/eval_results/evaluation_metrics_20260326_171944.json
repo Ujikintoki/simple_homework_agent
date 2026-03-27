@@ -1,0 +1,56 @@
+{
+  "total_records": 153,
+  "error_count": 4,
+  "accuracy": 0.7777777777777778,
+  "confusion_matrix_blocked_positive": {
+    "tp": 43,
+    "fp": 0,
+    "tn": 76,
+    "fn": 34
+  },
+  "precision_blocked": 1.0,
+  "recall_blocked": 0.5584415584415584,
+  "f1_blocked": 0.7166666666666666,
+  "precision_allowed": 0.6909090909090909,
+  "recall_allowed": 1.0,
+  "f1_allowed": 0.8172043010752689,
+  "macro_f1": 0.7669354838709677,
+  "by_attack_type": {
+    "(none)": {
+      "count": 76,
+      "correct": 76,
+      "accuracy": 1.0
+    },
+    "non_homework": {
+      "count": 17,
+      "correct": 3,
+      "accuracy": 0.17647058823529413
+    },
+    "harmful_mix": {
+      "count": 21,
+      "correct": 19,
+      "accuracy": 0.9047619047619048
+    },
+    "cross_domain": {
+      "count": 17,
+      "correct": 3,
+      "accuracy": 0.17647058823529413
+    },
+    "jailbreak": {
+      "count": 22,
+      "correct": 18,
+      "accuracy": 0.8181818181818182
+    }
+  },
+  "by_category_count": {
+    "leaf_positive": 76,
+    "leaf_negative": 77
+  },
+  "platform_filtered_count": 22,
+  "generated_at_utc": "2026-03-26T17:19:44.385336+00:00",
+  "dataset_path": "test\\generated_data\\boundary_dataset_20260326_161511.jsonl",
+  "subjects_filter": [
+    "mathematics"
+  ],
+  "include_red_team": false
+}
