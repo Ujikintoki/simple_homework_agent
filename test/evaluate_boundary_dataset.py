@@ -338,6 +338,152 @@ async def run_one_case(index: int, row: dict[str, Any], sem: asyncio.Semaphore) 
     }
 
 
+async def run_boundary_evaluation(
+    dataset_path: Path,
+    output_dir: Path,
+    *,
+    concurrency: int = 3,
+    subjects: list[str] | None = None,
+    include_red_team: bool = False,
+    resume: bool = True,
+    quiet: bool = False,
+    checkpoint_filename: str = "evaluation_checkpoint.json",
+    signature_extra: dict[str, Any] | None = None,
+    output_stem: str = "evaluation",
+    progress_label: str = "Evaluation",
+    load_message: str | None = None,
+    load_label: str = "dataset",
+    checkpoint_init_message: str | None = None,
+    migrate_message: str | None = None,
+    extra_metrics: dict[str, Any] | None = None,
+    finish_message: str | None = None,
+) -> None:
+    """
+    Shared evaluation driver: load jsonl, filter, checkpoint, run_one_case, metrics, export.
+    Used by CLI ``main()`` and by ``mistake_eval/evaluate_wrong_cases.py`` so behavior stays identical.
+    """
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    rows = read_jsonl(dataset_path)
+    progress(
+        load_message or f"Loaded {load_label}: {dataset_path} ({len(rows)} rows)",
+        quiet,
+    )
+
+    selected_subjects = normalize_subjects(subjects)
+    if selected_subjects:
+        filtered_indices: list[int] = []
+        for i, row in enumerate(rows):
+            root = extract_root_subject(row).lower()
+            is_red_team = str(row.get("category", "")).strip() == "red_team"
+            if root in selected_subjects or (include_red_team and is_red_team):
+                filtered_indices.append(i)
+        progress(
+            "Subject filter enabled: "
+            f"{sorted(selected_subjects)} | include_red_team={include_red_team} | "
+            f"selected={len(filtered_indices)}",
+            quiet,
+        )
+    else:
+        filtered_indices = list(range(len(rows)))
+        progress("Subject filter disabled: evaluating all rows.", quiet)
+
+    checkpoint_path = output_dir / checkpoint_filename
+    signature: dict[str, Any] = {
+        "dataset": str(dataset_path.resolve()),
+        "dataset_size": len(rows),
+    }
+    if signature_extra:
+        signature.update(signature_extra)
+
+    checkpoint = load_checkpoint(checkpoint_path, quiet) if resume else {}
+    if checkpoint.get("signature") != signature:
+        checkpoint = {
+            "signature": signature,
+            "created_at_utc": datetime.now(timezone.utc).isoformat(),
+            "results": {},
+        }
+        progress(
+            checkpoint_init_message or "Initialized new evaluation checkpoint.",
+            quiet,
+        )
+
+    results_map: dict[str, dict[str, Any]] = checkpoint.get("results", {})
+    if not isinstance(results_map, dict):
+        results_map = {}
+        checkpoint["results"] = results_map
+
+    migrated = 0
+    for _, rec in results_map.items():
+        if not isinstance(rec, dict):
+            continue
+        if rec.get("predicted_label") == "error" and is_platform_content_filter_error(str(rec.get("error", ""))):
+            rec["predicted_label"] = "blocked"
+            rec["predicted_binary_label"] = "blocked"
+            rec["blocked_by_platform_filter"] = True
+            expected = str(rec.get("expected_label", "")).strip().lower()
+            rec["is_correct"] = expected == "blocked"
+            migrated += 1
+    if migrated:
+        checkpoint["results"] = results_map
+        save_checkpoint(checkpoint_path, checkpoint, quiet)
+        progress(
+            migrate_message or (
+                f"Migrated {migrated} old records from error->blocked (platform filter)."
+            ),
+            quiet,
+        )
+
+    pending_indices = [i for i in filtered_indices if str(i) not in results_map]
+    done_already = len(filtered_indices) - len(pending_indices)
+    progress(
+        f"Checkpoint hit in current selection: {done_already} reused, {len(pending_indices)} pending",
+        quiet,
+    )
+
+    sem = asyncio.Semaphore(max(1, concurrency))
+    tasks = [asyncio.create_task(run_one_case(i, rows[i], sem)) for i in pending_indices]
+
+    total_selected = len(filtered_indices)
+    done = done_already
+    for fut in asyncio.as_completed(tasks):
+        rec = await fut
+        results_map[str(rec["index"])] = rec
+        checkpoint["results"] = results_map
+        save_checkpoint(checkpoint_path, checkpoint, quiet)
+
+        done += 1
+        if done % max(1, max(1, total_selected) // 20) == 0 or done == total_selected:
+            progress(f"{progress_label} progress: {done}/{total_selected}", quiet)
+
+    ordered_records: list[dict[str, Any]] = []
+    for i in filtered_indices:
+        rec = results_map.get(str(i))
+        if isinstance(rec, dict):
+            ordered_records.append(rec)
+
+    metrics = compute_metrics(ordered_records)
+    metrics["platform_filtered_count"] = sum(1 for r in ordered_records if r.get("blocked_by_platform_filter"))
+    metrics["generated_at_utc"] = datetime.now(timezone.utc).isoformat()
+    metrics["dataset_path"] = str(dataset_path)
+    metrics["subjects_filter"] = sorted(selected_subjects) if selected_subjects else ["ALL"]
+    metrics["include_red_team"] = bool(include_red_team)
+    if extra_metrics:
+        metrics.update(extra_metrics)
+
+    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
+    json_path = output_dir / f"{output_stem}_metrics_{ts}.json"
+    excel_path = output_dir / f"{output_stem}_report_{ts}.xlsx"
+
+    with json_path.open("w", encoding="utf-8") as f:
+        json.dump(metrics, f, ensure_ascii=False, indent=2)
+
+    export_excel(excel_path, ordered_records, metrics)
+    progress(f"Saved metrics JSON: {json_path}", quiet)
+    progress(f"Saved Excel report: {excel_path}", quiet)
+    progress(finish_message or "Evaluation finished.", quiet)
+
+
 async def main() -> None:
     parser = argparse.ArgumentParser(description="Evaluate boundary dataset and export confusion matrix/F1.")
     parser.add_argument(
@@ -368,119 +514,15 @@ async def main() -> None:
 
     set_tracing_disabled(True)
 
-    dataset_path = Path(args.dataset)
-    output_dir = Path(args.output_dir)
-    output_dir.mkdir(parents=True, exist_ok=True)
-
-    rows = read_jsonl(dataset_path)
-    progress(f"Loaded dataset: {dataset_path} ({len(rows)} rows)", args.quiet)
-
-    selected_subjects = normalize_subjects(args.subjects)
-    if selected_subjects:
-        filtered_indices: list[int] = []
-        for i, row in enumerate(rows):
-            root = extract_root_subject(row).lower()
-            is_red_team = str(row.get("category", "")).strip() == "red_team"
-            if root in selected_subjects or (args.include_red_team and is_red_team):
-                filtered_indices.append(i)
-        progress(
-            "Subject filter enabled: "
-            f"{sorted(selected_subjects)} | include_red_team={args.include_red_team} | "
-            f"selected={len(filtered_indices)}",
-            args.quiet,
-        )
-    else:
-        filtered_indices = list(range(len(rows)))
-        progress("Subject filter disabled: evaluating all rows.", args.quiet)
-
-    checkpoint_path = output_dir / "evaluation_checkpoint.json"
-    signature = {
-        "dataset": str(dataset_path.resolve()),
-        "dataset_size": len(rows),
-    }
-
-    checkpoint = load_checkpoint(checkpoint_path, args.quiet) if args.resume else {}
-    if checkpoint.get("signature") != signature:
-        checkpoint = {
-            "signature": signature,
-            "created_at_utc": datetime.now(timezone.utc).isoformat(),
-            "results": {},
-        }
-        progress("Initialized new evaluation checkpoint.", args.quiet)
-
-    results_map: dict[str, dict[str, Any]] = checkpoint.get("results", {})
-    if not isinstance(results_map, dict):
-        results_map = {}
-        checkpoint["results"] = results_map
-
-    # Migrate existing checkpoint records:
-    # if older runs marked Azure content-filter events as "error",
-    # relabel them to blocked and recompute correctness.
-    migrated = 0
-    for _, rec in results_map.items():
-        if not isinstance(rec, dict):
-            continue
-        if rec.get("predicted_label") == "error" and is_platform_content_filter_error(str(rec.get("error", ""))):
-            rec["predicted_label"] = "blocked"
-            rec["predicted_binary_label"] = "blocked"
-            rec["blocked_by_platform_filter"] = True
-            expected = str(rec.get("expected_label", "")).strip().lower()
-            rec["is_correct"] = expected == "blocked"
-            migrated += 1
-    if migrated:
-        checkpoint["results"] = results_map
-        save_checkpoint(checkpoint_path, checkpoint, args.quiet)
-        progress(f"Migrated {migrated} old records from error->blocked (platform filter).", args.quiet)
-
-    pending_indices = [i for i in filtered_indices if str(i) not in results_map]
-    done_already = len(filtered_indices) - len(pending_indices)
-    progress(
-        f"Checkpoint hit in current selection: {done_already} reused, {len(pending_indices)} pending",
-        args.quiet,
+    await run_boundary_evaluation(
+        Path(args.dataset),
+        Path(args.output_dir),
+        concurrency=args.concurrency,
+        subjects=args.subjects,
+        include_red_team=args.include_red_team,
+        resume=args.resume,
+        quiet=args.quiet,
     )
-
-    sem = asyncio.Semaphore(max(1, args.concurrency))
-    tasks = [
-        asyncio.create_task(run_one_case(i, rows[i], sem))
-        for i in pending_indices
-    ]
-
-    total_selected = len(filtered_indices)
-    done = done_already
-    for fut in asyncio.as_completed(tasks):
-        rec = await fut
-        results_map[str(rec["index"])] = rec
-        checkpoint["results"] = results_map
-        save_checkpoint(checkpoint_path, checkpoint, args.quiet)
-
-        done += 1
-        if done % max(1, max(1, total_selected) // 20) == 0 or done == total_selected:
-            progress(f"Evaluation progress: {done}/{total_selected}", args.quiet)
-
-    ordered_records: list[dict[str, Any]] = []
-    for i in filtered_indices:
-        rec = results_map.get(str(i))
-        if isinstance(rec, dict):
-            ordered_records.append(rec)
-
-    metrics = compute_metrics(ordered_records)
-    metrics["platform_filtered_count"] = sum(1 for r in ordered_records if r.get("blocked_by_platform_filter"))
-    metrics["generated_at_utc"] = datetime.now(timezone.utc).isoformat()
-    metrics["dataset_path"] = str(dataset_path)
-    metrics["subjects_filter"] = sorted(selected_subjects) if selected_subjects else ["ALL"]
-    metrics["include_red_team"] = bool(args.include_red_team)
-
-    ts = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
-    json_path = output_dir / f"evaluation_metrics_{ts}.json"
-    excel_path = output_dir / f"evaluation_report_{ts}.xlsx"
-
-    with json_path.open("w", encoding="utf-8") as f:
-        json.dump(metrics, f, ensure_ascii=False, indent=2)
-
-    export_excel(excel_path, ordered_records, metrics)
-    progress(f"Saved metrics JSON: {json_path}", args.quiet)
-    progress(f"Saved Excel report: {excel_path}", args.quiet)
-    progress("Evaluation finished.", args.quiet)
 
 
 if __name__ == "__main__":
