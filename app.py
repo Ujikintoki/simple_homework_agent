@@ -31,8 +31,7 @@ if "generating" not in st.session_state:
 # 1.5 Sidebar & Clear Chat Logic (新增防线1)
 # =============================
 with st.sidebar:
-    st.markdown("### 控制面板")
-    if st.button("🗑️ 清空对话 (Clear Chat)"):
+    if st.button("🗑️ (Clear Chat)"):
         # 强制重置所有状态，回到初始状态
         st.session_state.messages = [{
             "role": "assistant",
